@@ -24,13 +24,13 @@ set targerSubfolder = targetFolder.SubFolders
 ' searching for hiest version
 For Each objFolfer in targerSubfolder 
     versionFound = objFolfer.Name
-    If IsNumeric(versionFound) Then
-    If CLng(versionFound) Then 
-        If versionFound > versionCurr Then
-            versionCurr = versionFound
+    If IsNumeric(versionFound) Then ' check it's float like 12,3
+        If CLng(versionFound) Then ' check it's integer like 12
+            If versionFound > versionCurr Then
+                versionCurr = versionFound
+            End If
         End If
     End If
-End If
 Next
 
 if versionCurr = 1 then Wscript.Quit 
