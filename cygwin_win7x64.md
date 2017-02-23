@@ -2,7 +2,7 @@
 ----------------
 
 инструкция к применению
-необходимые пакеты: openssh, nano
+необходимые пакеты: openssh, nano, wget, curl, ca-certificates, gnupg
 
 ставить ли зависимости: да
 
@@ -70,7 +70,7 @@ Query: Shall I create a SSH2 ECDSA identity file for you?            Answer: **n
 Query: Shall I create a (deprecated) SSH1 RSA identity file for you? Answer: **no**
 
 
->копируем приватный ключ `c:\cygwin\home\mcgr0g\.ssh\id_rsa`
+>копируем приватный ключ `c:\cygwin\home\%username%\.ssh\id_rsa`
 > и проверяем работу sshd
 
 `ssh –v localhost`
@@ -91,7 +91,15 @@ netsh advfirewall firewall add rule name="SSH Server" dir=in protocol=TCP localp
 netsh advfirewall firewall add rule name="SSHD" dir=in action=allow program="%CYGWIN_HOME%\usr\sbin\sshd.exe" enable=yes`
 ```
 
-на будущее
-----------
+менеджер пакетов
+----------------
 
-и обязательно посомтри проект [apt-cyg](https://github.com/kou1okada/apt-cyg) для установки из консоли
+на основе [apt-cyg](https://github.com/kou1okada/apt-cyg):
+```
+wget https://raw.githubusercontent.com/kou1okada/apt-cyg/master/apt-cyg
+chmod +x apt-cyg # set executable bit
+mv apt-cyg /usr/local/bin # move somewhere to PATH
+apt-cyg scriptinfo
+apt-cyg completion-install
+apt-cyg show
+```
