@@ -3,7 +3,7 @@
 
 следует помнить необходимые [пакеты](./requiremets.md)
 ставить ли зависимости: да
-далее процесс описания ssh дем
+далее процесс описания ssh демона
 
 оболочка cygterm (от администратора):
 -------------------------------------
@@ -33,16 +33,18 @@ Query: Please enter the password:
 Answer: **hardpassword**
 
 >запускаем службу
-
 `net start sshd`
 
->настраиваем порт
-
+>настраиваем порт: выполняем
 `nano /etc/sshd_config`
->Port 2452
->Protocol 2
->PubkeyAuthentication yes
->AuthorizedKeysFile .ssh/authorized_keys
+
+> ищем и раскоментируем строки
+```
+Port 2452
+Protocol 2
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+```
 
 ctrl+o ; ctrl+x
 
