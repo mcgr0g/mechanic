@@ -64,7 +64,7 @@ Query: Shall I create a SSH2 RSA identity file for you?              Answer: **y
 
 Query: Do you want to use this identity to login to this machine?    Answer: **yes**
 
-Query: Shall I create a SSH2 DSA identity file for you?              Answer: **yes**
+Query: Shall I create a SSH2 DSA identity file for you?              Answer: **no**
 
 Query: Shall I create a SSH2 ECDSA identity file for you?            Answer: **no**
 
@@ -74,7 +74,7 @@ Query: Shall I create a (deprecated) SSH1 RSA identity file for you? Answer: **n
 >копируем приватный ключ `c:\cygwin\home\%username%\.ssh\id_rsa`
 > и проверяем работу sshd
 
-`ssh –v localhost`
+`ssh -v localhost -p 2452`
 ctrl+d; ctrl+d
 
 оболочка cmd (от администратора):
