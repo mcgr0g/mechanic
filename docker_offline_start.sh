@@ -52,16 +52,16 @@ CACHE_ISO_TARGET=~/.docker/machine/cache/$CACHE_ISO
 CERTS_DIR_SOURCE=~/.docker/machine/certs/
 CERTS_DIR_TARGET=~/.docker/machine/machines/default/
 
-ping -n 1 -w 200 github.com &>/dev/null
-online=$?
+online=1
+curl -sf -m 0,2 http://github.com > /dev/null || online=0
 
-if [ $online -eq 1 ]; then
+if [ $online -eq 0 ]; then
   echo "Offline work"
   if [ $OS == "Windows_NT" ]; then
       if [ ! -f "$CACHE_ISO_TARGET" ]; then
-        # echo "not found target cache for online work"
+        echo "not found target cache for online work"
         if [ -f "$CACHE_ISO_SOURCE" ]; then
-          # echo "found source for cache"
+          echo "found source for cache"
           cp "$CACHE_ISO_SOURCE" "$CACHE_ISO_TARGET"
         else
           echo "bad installation: there no CACHE_ISO_SOURCE"
