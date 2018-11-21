@@ -16,4 +16,5 @@ rem add it for folders
 @reg add "HKEY_CLASSES_ROOT\Folder\shell\%entryName%"         /t REG_SZ /v "" /d "%menuText%" /f
 @reg add "HKEY_CLASSES_ROOT\Folder\shell\%entryName%"         /t REG_EXPAND_SZ /v "Icon" /d "%stPath%,0" /f
 @reg add "HKEY_CLASSES_ROOT\Folder\shell\%entryName%\command" /t REG_SZ /v "" /d "%stPath% \"%%1\"" /f
-0
+
+pause
