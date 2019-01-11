@@ -6,6 +6,7 @@
 ' init environment
 set WshShell = CreateObject("WScript.Shell")
 set fso = CreateObject("Scripting.FileSystemObject")
+Set objRegExp = CreateObject("VBScript.RegExp")
 ' init local parameters
 strPath = Wscript.ScriptFullName
 set objFile = fso.GetFile(strPath)
@@ -19,21 +20,30 @@ filePattern = "settings.xml"
 versionCurr = 1 ' for saving version of SmartGit
 
 set targetFolder = fso.GetFolder(dirTarget)
-set targerSubfolder = targetFolder.SubFolders
+set targetSubfolder = targetFolder.SubFolders
+' Wscript.Echo targetFolder
+
+objRegExp.Pattern = "^[0-9]{2}.[0-9]$"
 
 ' searching for hiest version
-For Each objFolfer in targerSubfolder 
-    versionFound = objFolfer.Name
-    If IsNumeric(versionFound) Then ' check it's float like 12,3
-        If CLng(versionFound) Then ' check it's integer like 12
-            If versionFound > versionCurr Then
-                versionCurr = versionFound
-            End If
-        End If
+For Each objFolder in targetSubfolder 
+    versionFound = objFolder.Name
+    ' WScript.Echo versionFound
+    ' WScript.Echo TypeName(versionFound)
+    ' WScript.Echo TypeName(Cstr(versionFound))
+    If IsNumeric(versionFound) Then ' check it's float like 17.1
+        ' Wscript.Echo versionFound
+        If versionCurr = 1 then Wscript.Quit 
+    End If
+    If (objRegExp.Test(versionFound) = True) Then
+        versionCurr = versionFound
+        ' WScript.Echo versionCurr
+        ' WScript.Echo TypeName(versionCurr)
+        ' WScript.Echo CDbl(versionCurr)
+        ' WScript.Echo CDbl(Replace(versionFound, ".", ","))
     End If
 Next
 
-if versionCurr = 1 then Wscript.Quit 
 fileTarget = dirTarget & versionCurr & "\" & filePattern
 
 if fso.FileExists(fileTarget) then
