@@ -3,7 +3,9 @@
 @rem %entryName%: Key name for the registry entry.
 @rem %menuText% : Context menu text. Set your preferred menu text (e.g.: translate to your language).
 
-SET stPath=d:\portable\SublimeText\sublime_text.exe
+@rem SET stPath=d:\portable\SublimeText\sublime_text.exe
+SET stPath=%~dp0\sublime_text.exe
+
 SET entryName=Sublime Text 3x64
 SET menuText=Open with ST3
 
