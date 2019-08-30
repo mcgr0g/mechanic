@@ -1,0 +1,7 @@
+﻿; AutoHotkey Script
+
+SetCapsLockState, AlwaysOff
++CapsLock::CapsLock
+
+CapsLock::Send, {Alt down}{Shift down}{Alt up}{Shift up}
+return
